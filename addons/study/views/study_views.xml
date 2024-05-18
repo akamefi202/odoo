@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--study tree view-->
+    <record id="study_tree_view" model="ir.ui.view">
+        <field name="name">study.study.tree</field>
+        <field name="model">study.study</field>
+        <field name="arch" type="xml">
+            <tree string="study-list">
+                <field name="code" string="Study Title"/>
+                <field name="name" string="Study Name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--study form view-->
+    <record id="study_form_view" model="ir.ui.view">
+        <field name="name">study.study.form</field>
+        <field name="model">study.study</field>
+        <field name="arch" type="xml">
+            <form string="study">
+                <header>
+                    <!--<button name="action_edit" type="object" string="Edit"/>-->
+                    <button name="action_approve" type="object" string="Approve" invisible="status != 'draft'"/>
+                    <button name="action_close" type="object" string="Close" invisible="status != 'approved'"/>
+                    <button name="action_archive" type="object" string="Archive"/>
+                    <button name="action_delete" type="object" string="Delete"/>
+                    <!--<button name="action_unarchive" type="object" string="Unarchive" invisible="1"/>-->
+                    <field name="status" widget="statusbar" nolabel="1"/>
+                </header>
+                <sheet>
+                    <group col="2">
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="prestudy_days"/>
+                            <field name="recovery_days"/>
+                        </group>
+                        <group>
+                            <field name="animal_number_total"/>
+                            <field name="animal_number_per_cage"/>
+                            <field name="director"/>
+                            <field name="article_name"/>
+                            <field name="animal_name"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Groups" name="study_groups">
+                            <field name="group_ids" nolabel="1" context="{'default_study_id': active_id}">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="article_amount" />
+                                    <field name="male_animal_count" />
+                                    <field name="female_animal_count" />
+                                    <button name="move_to_group" string="Move" type="object" class="oe_highlight" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Comments" name="study_comments" context="{'default_study_id': active_id}">
+                            <field name="comment_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="user_id" readonly="True" />
+                                    <field name="text" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Records" name="study_records" context="{'default_study_id': active_id}">
+                            <field name="record_ids" nolabel="1" readonly="True">
+                                <tree>
+                                    <field name="text" readonly="True" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--study search view-->
+    <record id="study_search_view" model="ir.ui.view">
+        <field name="name">study.study.search</field>
+        <field name="model">study.study</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="status"/>
+                <field name="director"/>
+                <field name="article_name"/>
+                <field name="animal_name"/>
+
+                <filter string="Draft" name="draft" domain="[('status', '=', 'draft')]"/>
+                <filter string="Approved" name="approved" domain="[('status', '=', 'approved')]"/>
+                <filter string="Closed" name="closed" domain="[('status', '=', 'closed')]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

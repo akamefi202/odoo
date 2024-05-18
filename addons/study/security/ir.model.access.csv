@@ -1,0 +1,8 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_study_study,access_study_study,model_study_study,base.group_user,1,1,1,1
+access_study_animal,access_study_animal,model_study_animal,base.group_user,1,1,1,1
+access_study_article,access_study_article,model_study_article,base.group_user,1,1,1,1
+access_study_comment,access_study_comment,model_study_comment,base.group_user,1,1,1,1
+access_study_record,access_study_record,model_study_record,base.group_user,1,1,1,1
+access_study_group,access_study_group,model_study_group,base.group_user,1,1,1,1
+access_study_subgroup,access_study_subgroup,model_study_subgroup,base.group_user,1,1,1,1

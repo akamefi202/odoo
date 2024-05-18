@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+     <data>
+          <record id="action_study_study" model="ir.actions.act_window">
+              <field name="name">Study</field>
+              <field name="type">ir.actions.act_window</field>
+              <field name="res_model">study.study</field>
+              <field name="view_mode">tree,form,kanban</field>
+              <field name="help" type="html">
+                  <p class="1">Create</p>
+              </field>
+          </record>
+
+         <record id="action_study_comment" model="ir.actions.act_window">
+             <field name="name">Comment</field>
+              <field name="type">ir.actions.act_window</field>
+              <field name="res_model">study.comment</field>
+              <field name="view_mode">tree,form,kanban</field>
+              <field name="help" type="html">
+                  <p class="1">Create</p>
+              </field>
+          </record>
+
+         <record id="action_study_animal" model="ir.actions.act_window">
+             <field name="name">Animal</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">study.animal</field>
+             <field name="view_mode">tree,form,kanban</field>
+             <field name="help" type="html">
+                 <p class="1">Create</p>
+             </field>
+         </record>
+
+         <record id="action_study_article" model="ir.actions.act_window">
+             <field name="name">Article</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">study.article</field>
+             <field name="view_mode">tree,form,kanban</field>
+             <field name="help" type="html">
+                 <p class="1">Create</p>
+             </field>
+         </record>
+
+         <menuitem id="study_menu_root" name="Study Management" action="action_study_study"/>
+         <menuitem id="study_animal_menu_root" name="Animal" parent="study_menu_root" action="action_study_animal"/>
+         <menuitem id="study_article_menu_root" name="Article" parent="study_menu_root" action="action_study_article"/>
+     </data>
+</odoo>

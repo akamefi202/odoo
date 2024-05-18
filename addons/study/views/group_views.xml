@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--study group form view-->
+    <record id="study_group_form_view" model="ir.ui.view">
+        <field name="name">study.group.form</field>
+        <field name="model">study.group</field>
+        <field name="arch" type="xml">
+            <form string="group">
+                <sheet>
+                    <group col="2">
+                        <group>
+                            <field name="study_id" readonly="True"/>
+                            <field name="name"/>
+                            <field name="article_amount"/>
+                            <field name="male_animal_count"/>
+                            <field name="female_animal_count"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Sub-groups" name="study_subgroups">
+                            <field name="subgroup_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="male_animal_count" />
+                                    <field name="female_animal_count" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

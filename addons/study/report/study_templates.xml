@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- template use to render Study -->
+    <template id="study_study_report_template">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div>
+                        <strong>Study Title: </strong>
+                        <span t-field="o.code"/>
+                    </div>
+                    <div>
+                        <strong>Study Name: </strong>
+                        <span t-field="o.name"/>
+                    </div>
+                    <div>
+                        <strong>Start Date: </strong>
+                        <span t-field="o.start_date"/>
+                    </div>
+                    <div>
+                        <strong>End Date: </strong>
+                        <span t-field="o.end_date"/>
+                    </div>
+                    <div>
+                        <strong>Pre-study Days: </strong>
+                        <span t-field="o.prestudy_days"/>
+                    </div>
+                    <div>
+                        <strong>Recovery Days: </strong>
+                        <span t-field="o.recovery_days"/>
+                    </div>
+                    <div>
+                        <strong>Total Number of Animals: </strong>
+                        <span t-field="o.animal_number_total"/>
+                    </div>
+                    <div>
+                        <strong>Number of Animals Per Cage: </strong>
+                        <span t-field="o.animal_number_per_cage"/>
+                    </div>
+                    <div>
+                        <strong>Article: </strong>
+                        <span t-field="o.article_name"/>
+                    </div>
+                    <div>
+                        <strong>Animal: </strong>
+                        <span t-field="o.animal_name"/>
+                    </div>
+                    <div>
+                        <strong>Director: </strong>
+                        <span t-field="o.director"/>
+                    </div>
+                    <div>
+                        <strong>Status: </strong>
+                        <span t-field="o.status"/>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>
