@@ -4,7 +4,7 @@
     "author": "Orientech",
     "category": "Tools",
     "description": """Orientech Study Data Management""",
-    "depends": ["base"],
+    "depends": ["base", "mail"],
     "data": [
         'security/ir.model.access.csv',
         'report/study_reports.xml',

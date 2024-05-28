@@ -11,16 +11,6 @@
               </field>
           </record>
 
-         <record id="action_study_comment" model="ir.actions.act_window">
-             <field name="name">Comment</field>
-              <field name="type">ir.actions.act_window</field>
-              <field name="res_model">study.comment</field>
-              <field name="view_mode">tree,form,kanban</field>
-              <field name="help" type="html">
-                  <p class="1">Create</p>
-              </field>
-          </record>
-
          <record id="action_study_animal" model="ir.actions.act_window">
              <field name="name">Animal</field>
              <field name="type">ir.actions.act_window</field>

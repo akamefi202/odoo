@@ -61,23 +61,23 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="Comments" name="study_comments" context="{'default_study_id': active_id}">
-                            <field name="comment_ids" nolabel="1">
-                                <tree editable="bottom">
-                                    <field name="user_id" readonly="True" />
-                                    <field name="text" />
-                                </tree>
-                            </field>
+                        <page string="Comments" name="study_comment" context="{'default_study_id': active_id}">
+                            <field name="comment" nolabel="1" />
                         </page>
-                        <page string="Records" name="study_records" context="{'default_study_id': active_id}">
+                        <!--<page string="Records" name="study_records" context="{'default_study_id': active_id}">
                             <field name="record_ids" nolabel="1" readonly="True">
                                 <tree>
                                     <field name="text" readonly="True" />
                                 </tree>
                             </field>
-                        </page>
+                        </page>-->
                     </notebook>
-                </sheet>
+                </sheet>     
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+	                <field name="activity_ids"/>
+	                <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
