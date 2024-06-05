@@ -13,11 +13,9 @@ class Group(models.Model):
     article_amount = fields.Float(string="Test Article Amount", default=0)
     male_animal_count = fields.Integer(string="Male Animal Count", default=0)
     female_animal_count = fields.Integer(string="Female Animal Count", default=0)
-    subgroup_ids = fields.One2many(
-        comodel_name="study.subgroup",
-        inverse_name="group_id",
-        string="Study Sub-groups",
-    )
+    have_subgroup = fields.Boolean(string="Have Subgroup", default=False)
+    subgroup_male_animal_count = fields.Integer(string="Subgroup Male Animal Count", default=0)
+    subgroup_female_animal_count = fields.Integer(string="Subgroup Female Animal Count", default=0)
 
     def move_to_group(self):
         group_form = self.env.ref('study.study_group_form_view', False)

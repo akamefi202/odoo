@@ -14,19 +14,11 @@
                             <field name="article_amount"/>
                             <field name="male_animal_count"/>
                             <field name="female_animal_count"/>
+                            <field name="have_subgroup"/>
+                            <field name="subgroup_male_animal_count" invisible="have_subgroup==False"/>
+                            <field name="subgroup_female_animal_count" invisible="have_subgroup==False"/>
                         </group>
                     </group>
-
-                    <notebook>
-                        <page string="Sub-groups" name="study_subgroups">
-                            <field name="subgroup_ids" nolabel="1">
-                                <tree editable="bottom">
-                                    <field name="male_animal_count" />
-                                    <field name="female_animal_count" />
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
         </field>
