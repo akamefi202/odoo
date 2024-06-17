@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--ar room form view-->
+    <record id="ar_room_form_view" model="ir.ui.view">
+        <field name="name">ar.room.form</field>
+        <field name="model">ar.room</field>
+        <field name="arch" type="xml">
+            <form string="group">
+                <sheet>
+                    <group col="1">
+                        <field name="room" />
+                        <field name="id" readonly="True" />
+                        <field name="location" />
+                        <field name="pic" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

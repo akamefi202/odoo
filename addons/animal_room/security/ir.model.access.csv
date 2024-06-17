@@ -1,0 +1,4 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_ar_protocol,access_ar_protocol,model_ar_protocol,base.group_user,1,1,1,1
+access_ar_cage,access_ar_cage,model_ar_cage,base.group_user,1,1,1,1
+access_ar_room,access_ar_room,model_ar_room,base.group_user,1,1,1,1

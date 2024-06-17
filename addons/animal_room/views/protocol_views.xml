@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--ar protocol form view-->
+    <record id="ar_protocol_form_view" model="ir.ui.view">
+        <field name="name">ar.protocol.form</field>
+        <field name="model">ar.protocol</field>
+        <field name="arch" type="xml">
+            <form string="group">
+                <sheet>
+                    <group col="1">
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

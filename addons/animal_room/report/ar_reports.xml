@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="report_ar_room" model="ir.actions.report">
+        <field name="name">Report</field>
+        <field name="model">ar.room</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ar.ar_room_report_template</field>
+        <field name="report_file">ar.ar_room_report_template</field>
+        <field name="print_report_name">'Animal Room - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_ar_room"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

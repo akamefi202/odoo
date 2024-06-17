@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--ar cage form view-->
+    <record id="ar_cage_form_view" model="ir.ui.view">
+        <field name="name">ar.cage.form</field>
+        <field name="model">ar.cage</field>
+        <field name="arch" type="xml">
+            <form string="group">
+                <sheet>
+                    <group col="1">
+                        <field name="id" readonly="True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

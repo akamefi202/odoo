@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- template use to render Study -->
+    <template id="ar_room_report_template">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div>
+                        <strong>Room Name: </strong>
+                        <span t-field="o.name"/>
+                    </div>
+                    <div>
+                        <strong>Room ID: </strong>
+                        <span t-field="o.id"/>
+                    </div>
+                    <div>
+                        <strong>Room Location: </strong>
+                        <span t-field="o.location"/>
+                    </div>
+                    <div>
+                        <strong>Person in Charge: </strong>
+                        <span t-field="o.pic"/>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

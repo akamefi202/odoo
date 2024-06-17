@@ -31,7 +31,7 @@
              </field>
          </record>
 
-         <menuitem id="study_menu_root" name="Study Management" action="action_study_study"/>
+         <menuitem id="study_menu_root" name="Study" action="action_study_study"/>
          <menuitem id="study_animal_menu_root" name="Animal" parent="study_menu_root" action="action_study_animal"/>
          <menuitem id="study_article_menu_root" name="Article" parent="study_menu_root" action="action_study_article"/>
      </data>

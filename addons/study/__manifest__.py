@@ -1,5 +1,5 @@
 {
-    "name": "Study Management",
+    "name": "Study",
     "version": "1.0",
     "author": "Orientech",
     "category": "Tools",
