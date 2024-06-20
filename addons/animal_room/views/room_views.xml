@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!--room tree view-->
+    <record id="room_tree_view" model="ir.ui.view">
+        <field name="name">ar.room.tree</field>
+        <field name="model">ar.room</field>
+        <field name="arch" type="xml">
+            <tree string="study-list">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="location"/>
+                <field name="pic_id" ref="base.user_admin" />
+            </tree>
+        </field>
+    </record>
+
     <!--ar room form view-->
     <record id="ar_room_form_view" model="ir.ui.view">
         <field name="name">ar.room.form</field>
@@ -8,11 +22,33 @@
             <form string="group">
                 <sheet>
                     <group col="1">
-                        <field name="room" />
-                        <field name="id" readonly="True" />
+                        <field name="name" />
+                        <field name="code" />
                         <field name="location" />
-                        <field name="pic" />
+                        <field name="pic_id" ref="base.user_admin" />
                     </group>
+
+                    <notebook>
+                        <page string="Cages" name="room_cages">
+                            <field name="cage_ids" nolabel="1" context="{'default_room_id': active_id}">
+                                <tree class="cage_tree" editable="bottom">
+                                    <field name="code" />
+                                    <button
+                                        width="100"
+                                        name="move_to_cage"
+                                        icon="oi-arrow-right"
+                                        title="Show More"
+                                        type="object"
+                                        class="btn-outline-primary border-0"
+                                    />
+
+                                    <control>
+                                        <create name="add_cage_control" string="Add a cage"/>
+                                    </control>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

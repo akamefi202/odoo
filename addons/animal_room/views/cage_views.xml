@@ -5,10 +5,10 @@
         <field name="name">ar.cage.form</field>
         <field name="model">ar.cage</field>
         <field name="arch" type="xml">
-            <form string="group">
+            <form string="Cage">
                 <sheet>
                     <group col="1">
-                        <field name="id" readonly="True"/>
+                        <field name="code" />
                     </group>
                 </sheet>
             </form>

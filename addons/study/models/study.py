@@ -49,9 +49,7 @@ class Study(models.Model):
         default="mouse",
         required=True
     )
-    comment = fields.Text(string="", required=True, default="")
-    #article_name = fields.Char(string="Article", required=True)
-    #animal_name = fields.Char(string="Animal", required=True)
+    comment = fields.Text(string="Comment", required=False, default="")
     #sd_user_id = fields.Many2one("res.users", string="SD Name", default=lambda self: self.env.user)
     #article_id = fields.Many2one("study.article", String="Article")
     #animal_id = fields.Many2one("study.animal", String="Animal")
@@ -59,11 +57,6 @@ class Study(models.Model):
         comodel_name="study.group",
         inverse_name="study_id",
         string="Study Groups",
-    )
-    record_ids = fields.One2many(
-        comodel_name="study.record",
-        inverse_name="study_id",
-        string="Records",
     )
 
     @api.depends('name')

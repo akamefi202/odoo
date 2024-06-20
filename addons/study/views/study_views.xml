@@ -64,13 +64,6 @@
                         <page string="Comments" name="study_comment" context="{'default_study_id': active_id}">
                             <field name="comment" nolabel="1" />
                         </page>
-                        <!--<page string="Records" name="study_records" context="{'default_study_id': active_id}">
-                            <field name="record_ids" nolabel="1" readonly="True">
-                                <tree>
-                                    <field name="text" readonly="True" />
-                                </tree>
-                            </field>
-                        </page>-->
                     </notebook>
                 </sheet>     
                 <div class="oe_chatter">

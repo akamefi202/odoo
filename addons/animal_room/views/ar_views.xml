@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_study_study" model="ir.actions.act_window">
+            <field name="name">Study</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">study.study</field>
+            <field name="view_mode">tree,kanban</field>
+        </record>
+
+        <record id="action_ar_protocol" model="ir.actions.act_window">
+            <field name="name">Protocol</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ar.protocol</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <record id="action_ar_room" model="ir.actions.act_window">
+            <field name="name">Room</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ar.room</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <menuitem id="ar_menu_root" name="Animal Room" action="action_study_study" sequence="10" />
+        <menuitem id="ar_protocol_menu_root" name="Protocol" parent="ar_menu_root" action="action_ar_protocol" sequence="20"/>
+        <menuitem id="ar_room_menu_root" name="Room" parent="ar_menu_root" action="action_ar_room" sequence="30"/>
+    </data>
+</odoo>

@@ -20,7 +20,7 @@
                     </div>
                     <div>
                         <strong>Person in Charge: </strong>
-                        <span t-field="o.pic"/>
+                        <span t-field="o.pic_id"/>
                     </div>
                 </div>
             </t>
