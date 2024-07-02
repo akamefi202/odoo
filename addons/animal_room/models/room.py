@@ -14,8 +14,7 @@ class Room(models.Model):
         store=True,
         readonly=False,
         index=True,
-        required=True,
-        tracking=2)
+        required=True)
     comment = fields.Char(string="Comment")
 
     cage_ids = fields.One2many(

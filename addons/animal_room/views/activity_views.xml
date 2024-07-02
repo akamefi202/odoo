@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--ar activity tree view-->
+    <record id="ar_activity_tree_view" model="ir.ui.view">
+        <field name="name">ar.activity.tree</field>
+        <field name="model">ar.activity</field>
+        <field name="arch" type="xml">
+            <tree string="Activity Tree">
+                <field name="name" />
+                <field name="abbreviation" />
+                <field name="category_id" />
+            </tree>
+        </field>
+    </record>
+
+    <!--ar activity form view-->
+    <record id="ar_activity_form_view" model="ir.ui.view">
+        <field name="name">ar.activity.form</field>
+        <field name="model">ar.activity</field>
+        <field name="arch" type="xml">
+            <form string="Activity Form">
+                <sheet>
+                    <group col="1">
+                        <field name="name" />
+                        <field name="abbreviation" />
+                        <field name="category_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

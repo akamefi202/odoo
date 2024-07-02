@@ -13,6 +13,12 @@
         'views/room_views.xml',
         'views/cage_views.xml',
         'views/protocol_views.xml',
+        'views/subject_views.xml',
+        'views/category_views.xml',
+        'views/activity_views.xml',
+        'views/tag_views.xml',
+        'views/measurement_views.xml',
+        'views/unit_views.xml',
     ],
     "assets": {
         "web.assets_backend": [

@@ -2,3 +2,8 @@ from . import protocol
 from . import room
 from . import cage
 from . import subject
+from . import category
+from . import activity
+from . import unit
+from . import measurement
+from . import tag

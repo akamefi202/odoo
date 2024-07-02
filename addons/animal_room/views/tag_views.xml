@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--ar tag tree view-->
+    <record id="ar_tag_tree_view" model="ir.ui.view">
+        <field name="name">ar.tag.tree</field>
+        <field name="model">ar.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Tag Tree">
+                <field name="name" />
+                <field name="abbreviation" />
+            </tree>
+        </field>
+    </record>
+
+    <!--ar tag form view-->
+    <record id="ar_tag_form_view" model="ir.ui.view">
+        <field name="name">ar.tag.form</field>
+        <field name="model">ar.tag</field>
+        <field name="arch" type="xml">
+            <form string="Tag Form">
+                <sheet>
+                    <group col="1">
+                        <field name="name" />
+                        <field name="abbreviation" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

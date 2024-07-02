@@ -47,13 +47,25 @@
                     <notebook>
                         <page string="Subjects" name="ar_protocol_subjects">
                             <field name="subject_ids" nolabel="1" context="{'default_protocol_id': active_id}">
-                                <tree>
+                                <tree editable="bottom">
                                     <field name="id" string="Seq." />
                                     <field name="group_id" />
                                     <field name="animal_name" />
                                     <field name="uai" />
                                     <field name="sex" />
                                     <field name="cage_id" />
+                                    <button
+                                        width="100"
+                                        name="move_to_subject"
+                                        icon="oi-arrow-right"
+                                        title="Show More"
+                                        type="object"
+                                        class="btn-outline-primary border-0"
+                                    />
+
+                                    <control>
+                                        <create name="add_subject_control" string="Add a subject"/>
+                                    </control>
                                 </tree>
                             </field>
                         </page>

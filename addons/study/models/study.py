@@ -9,14 +9,14 @@ class Study(models.Model):
     _description = "study_study"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    code = fields.Char(string="Study Title", required=True, tracking=True)
-    name = fields.Char(string="Study Name", required=True, tracking=True)
-    start_date = fields.Date(string="Start Date", default=fields.Datetime.now(), required=True, tracking=True)
-    end_date = fields.Date(string="End Date", required=True, tracking=True)
-    prestudy_days = fields.Integer(string="Pre-study Days", required=True, tracking=True)
-    recovery_days = fields.Integer(string="Recovery Days", required=True, tracking=True)
-    animal_number_total = fields.Integer(string="Total Number of Animals", required=True, tracking=True)
-    animal_number_per_cage = fields.Integer(string="Number of Animals Per Cage", required=True, tracking=True)
+    code = fields.Char(string="Study Title", required=True)
+    name = fields.Char(string="Study Name", required=True)
+    start_date = fields.Date(string="Start Date", default=fields.Datetime.now(), required=True)
+    end_date = fields.Date(string="End Date", required=True)
+    prestudy_days = fields.Integer(string="Pre-study Days", required=True)
+    recovery_days = fields.Integer(string="Recovery Days", required=True)
+    animal_number_total = fields.Integer(string="Total Number of Animals", required=True)
+    animal_number_per_cage = fields.Integer(string="Number of Animals Per Cage", required=True)
     status = fields.Selection(
         [
             ("draft", "Draft"),
@@ -28,36 +28,25 @@ class Study(models.Model):
         required=True,
     )
     archived = fields.Boolean(string="Archived", default=False)
-    director = fields.Char(string="Director", required=True)
-    article_name = fields.Selection(
-        [
-            ("article1", "Article 1"),
-            ("article2", "Article 2"),
-            ("article3", "Article 3"),
-        ],
+    director_id = fields.Many2one(
+        comodel_name='res.users',
+        string="Director",
+        index=True,
+        required=True)
+    article_id = fields.Many2one(
+        comodel_name='study.article',
         string="Article",
-        default="article1",
-        required=True
-    )
-    animal_name = fields.Selection(
-        [
-            ("mouse", "Mouse"),
-            ("cat", "Cat"),
-            ("rabbit", "Rabbit"),
-        ],
+        required=True)
+    animal_id = fields.Many2one(
+        comodel_name='study.animal',
         string="Animal",
-        default="mouse",
-        required=True
-    )
-    comment = fields.Text(string="Comment", required=False, default="")
-    #sd_user_id = fields.Many2one("res.users", string="SD Name", default=lambda self: self.env.user)
-    #article_id = fields.Many2one("study.article", String="Article")
-    #animal_id = fields.Many2one("study.animal", String="Animal")
+        required=True)
     group_ids = fields.One2many(
         comodel_name="study.group",
         inverse_name="study_id",
         string="Study Groups",
     )
+    comment = fields.Text(string="Comment", required=False, default="")
 
     @api.depends('name')
     def _compute_user_role(self):

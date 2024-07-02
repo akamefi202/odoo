@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--ar subject form view-->
+    <record id="ar_subject_form_view" model="ir.ui.view">
+        <field name="name">ar.subject.form</field>
+        <field name="model">ar.subject</field>
+        <field name="arch" type="xml">
+            <form string="Subject Form">
+                <sheet>
+                    <group col="2">
+                        <group>
+                            <field name="cage_id" />
+                            <field name="animal_name" />
+                            <field name="sex" />
+                        </group>
+                        <group>
+                            <field name="uai" />
+                            <field name="study_id" />
+                            <field name="alive" widget="radio" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -32,7 +32,7 @@
                         <page string="Cages" name="room_cages">
                             <field name="cage_ids" nolabel="1" context="{'default_room_id': active_id}">
                                 <tree class="cage_tree" editable="bottom">
-                                    <field name="code" />
+                                    <field name="name" />
                                     <button
                                         width="100"
                                         name="move_to_cage"

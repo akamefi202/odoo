@@ -3,3 +3,8 @@ access_ar_protocol,access_ar_protocol,model_ar_protocol,base.group_user,1,1,1,1
 access_ar_cage,access_ar_cage,model_ar_cage,base.group_user,1,1,1,1
 access_ar_room,access_ar_room,model_ar_room,base.group_user,1,1,1,1
 access_ar_subject,access_ar_subject,model_ar_subject,base.group_user,1,1,1,1
+access_ar_category,access_ar_category,model_ar_category,base.group_user,1,1,1,1
+access_ar_activity,access_ar_activity,model_ar_activity,base.group_user,1,1,1,1
+access_ar_measurement,access_ar_measurement,model_ar_measurement,base.group_user,1,1,1,1
+access_ar_tag,access_ar_tag,model_ar_tag,base.group_user,1,1,1,1
+access_ar_unit,access_ar_unit,model_ar_unit,base.group_user,1,1,1,1

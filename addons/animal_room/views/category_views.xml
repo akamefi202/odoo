@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--ar category tree view-->
+    <record id="ar_category_tree_view" model="ir.ui.view">
+        <field name="name">ar.category.tree</field>
+        <field name="model">ar.category</field>
+        <field name="arch" type="xml">
+            <tree string="Category Tree">
+                <field name="name" />
+                <field name="abbreviation" />
+                <field name="tag_ids" />
+            </tree>
+        </field>
+    </record>
+
+    <!--ar category form view-->
+    <record id="ar_category_form_view" model="ir.ui.view">
+        <field name="name">ar.category.form</field>
+        <field name="model">ar.category</field>
+        <field name="arch" type="xml">
+            <form string="Category Form">
+                <sheet>
+                    <group col="1">
+                        <field name="name" />
+                        <field name="abbreviation" />
+                        <field name="tag_ids" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

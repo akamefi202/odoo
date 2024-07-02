@@ -27,7 +27,7 @@ class Protocol(models.Model):
     @api.onchange('study_id')
     def get_study_data(self):
         if self.study_id:
-            self.animal_name = self.study_id.animal_name
+            self.animal_name = self.study_id.animal_id.name
             self.animal_number_total = self.study_id.animal_number_total
             self.animal_number_per_cage = self.study_id.animal_number_per_cage
             self.study_end_date = self.study_id.end_date
@@ -44,7 +44,9 @@ class Protocol(models.Model):
                 'uai': '',
                 'sex': 'Male',
                 'animal_name': self.animal_name,
-                'protocol_id': self.id
+                'protocol_id': self.id,
+                'study_id': self.study_id.id,
+                'alive': 'alive',
             }])
 
         self.write({'subject_ids': subjects})

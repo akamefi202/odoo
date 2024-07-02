@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--animal tree view-->
+    <record id="animal_tree_view" model="ir.ui.view">
+        <field name="name">study.animal.tree</field>
+        <field name="model">study.animal</field>
+        <field name="arch" type="xml">
+            <tree string="study.animal.tree">
+                <field name="name" />
+                <field name="total_number" />
+            </tree>
+        </field>
+    </record>
+</odoo>

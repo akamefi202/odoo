@@ -43,9 +43,9 @@
                         <group>
                             <field name="animal_number_total"/>
                             <field name="animal_number_per_cage"/>
-                            <field name="director"/>
-                            <field name="article_name"/>
-                            <field name="animal_name"/>
+                            <field name="director_id"/>
+                            <field name="article_id"/>
+                            <field name="animal_id"/>
                         </group>
                     </group>
 
@@ -57,7 +57,18 @@
                                     <field name="article_amount" />
                                     <field name="male_animal_count" />
                                     <field name="female_animal_count" />
-                                    <button name="move_to_group" string="Move" type="object" class="oe_highlight" />
+                                    <button
+                                        width="100"
+                                        name="move_to_group"
+                                        icon="oi-arrow-right"
+                                        title="Show More"
+                                        type="object"
+                                        class="btn-outline-primary border-0"
+                                    />
+
+                                    <control>
+                                        <create name="add_group_control" string="Add a group"/>
+                                    </control>
                                 </tree>
                             </field>
                         </page>
@@ -86,9 +97,9 @@
                 <field name="start_date"/>
                 <field name="end_date"/>
                 <field name="status"/>
-                <field name="director"/>
-                <field name="article_name"/>
-                <field name="animal_name"/>
+                <field name="director_id"/>
+                <field name="article_id"/>
+                <field name="animal_id"/>
 
                 <filter string="Draft" name="draft" domain="[('status', '=', 'draft')]"/>
                 <filter string="Approved" name="approved" domain="[('status', '=', 'approved')]"/>
