@@ -5,7 +5,7 @@ class Subject(models.Model):
     _name = 'ar.subject'
     _description = 'ar_subject'
 
-    uai = fields.Char(string="Unique Animal ID", required=True, readonly=True)
+    uai = fields.Char(string="Unique Animal ID", readonly=True)
     sex = fields.Char(string="Sex", required=True, readonly=True)
     study_id = fields.Many2one(
         comodel_name='study.study',

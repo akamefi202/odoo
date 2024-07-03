@@ -7,6 +7,11 @@ class Cage(models.Model):
 
     name = fields.Char(required=True, string="Name")
     room_id = fields.Many2one(comodel_name="ar.room", string="Room", required=True)
+    subject_ids = fields.One2many(
+        comodel_name="ar.subject",
+        string="Subjects",
+        inverse_name="cage_id",
+    )
 
     def move_to_cage(self):
         cage_form = self.env.ref('animal_room.ar_cage_form_view', False)

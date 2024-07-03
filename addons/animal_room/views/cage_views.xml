@@ -10,6 +10,27 @@
                     <group col="1">
                         <field name="name" />
                     </group>
+                    <notebook>
+                        <page string="Subjects" name="cage_subjects">
+                            <field name="subject_ids" readonly="True">
+                                <tree>
+                                    <field name="uai" />
+                                    <field name="animal_name" />
+                                    <field name="sex" />
+                                    <field name="study_id" />
+                                    <field name="alive" />
+                                    <button
+                                        width="100"
+                                        name="move_to_subject"
+                                        icon="oi-arrow-right"
+                                        title="Show More"
+                                        type="object"
+                                        class="btn-outline-primary border-0"
+                                    />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

@@ -62,7 +62,6 @@
                                         type="object"
                                         class="btn-outline-primary border-0"
                                     />
-
                                     <control>
                                         <create name="add_subject_control" string="Add a subject"/>
                                     </control>

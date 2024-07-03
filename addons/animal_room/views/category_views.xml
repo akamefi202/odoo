@@ -23,8 +23,12 @@
                     <group col="1">
                         <field name="name" />
                         <field name="abbreviation" />
-                        <field name="tag_ids" />
                     </group>
+                    <notebook>
+                        <page string="Tags" name="category_tags">
+                            <field name="tag_ids" />
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

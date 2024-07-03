@@ -25,6 +25,11 @@
                         <field name="abbreviation" />
                         <field name="category_id" />
                     </group>
+                    <notebook>
+                        <page string="Measurements" name="activity_measurements">
+                            <field name="measurement_ids" />
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
