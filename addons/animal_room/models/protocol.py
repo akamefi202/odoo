@@ -154,8 +154,9 @@ class Protocol(models.Model):
                     group_index = j
                     continue
             group_index_array.append(group_index)
-            group_average_array[group_index] += bodyweight_array[i] / group_count_array[group_index]
-            group_count_array[group_index] += 1
+            group_average_array[group_index] += 0 if group_count_array[group_index] == 0\
+                else bodyweight_array[i] / group_count_array[group_index]
+            group_cur_count_array[group_index] += 1
 
         print(str(group_index_array))
         # allocate group ids to subjects in calculated order
