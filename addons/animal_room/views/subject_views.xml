@@ -7,6 +7,29 @@
         <field name="arch" type="xml">
             <form string="Subject Form">
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="move_to_bodyweight"
+                            string="Bodyweight"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-server"
+                        />
+                        <button
+                            name="move_to_food"
+                            string="Food"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-server"
+                        />
+                        <button
+                            name="move_to_water"
+                            string="Water"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-server"
+                        />
+                    </div>
                     <group col="2">
                         <group>
                             <field name="cage_id" />
@@ -19,6 +42,21 @@
                             <field name="alive" widget="radio" />
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Bodyweight" name="subject_bodyweight">
+                            <group col="3">
+                                <group>
+                                    <field name="bodyweight_activity_id" string="Activity" />
+                                </group>
+                                <group>
+                                    <field name="bodyweight_value" string="Value" />
+                                </group>
+                                <group>
+                                    <field name="bodyweight_note" string="Note" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

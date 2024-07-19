@@ -15,3 +15,7 @@ class Activity(models.Model):
         comodel_name="ar.measurement",
         string="Measurements",
     )
+    tag_ids = fields.Many2many(
+        comodel_name="ar.tag",
+        string="Tags",
+    )

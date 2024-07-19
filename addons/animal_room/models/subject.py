@@ -10,7 +10,8 @@ class Subject(models.Model):
     study_id = fields.Many2one(
         comodel_name='study.study',
         string="Associate Study",
-        required=True)
+        required=True,
+        readonly=True)
     animal_name = fields.Char(string="Animal Name", compute="get_animal_name", required=True, readonly=True)
     protocol_id = fields.Many2one(comodel_name="ar.protocol", string="Protocol", required=True)
     group_id = fields.Many2one(
@@ -19,8 +20,12 @@ class Subject(models.Model):
     cage_id = fields.Many2one(
         comodel_name='ar.cage',
         string="Cage")
-    #alive = fields.Boolean(string="Dead or Alive", default=True)
+    segment_id = fields.Integer(string="Segment Id", default=0)
     alive = fields.Selection(string="Dead or Alive", selection=[('dead', 'Dead'), ('alive', 'Alive')], default="alive")
+
+    bodyweight_activity_id = fields.Many2one(comodel_name='ar.activity', string='Activity')
+    bodyweight_value = fields.Float(string='Value', default=0)
+    bodyweight_note = fields.Char(string='Note')
 
     @api.depends('protocol_id')
     def get_animal_name(self):
@@ -42,3 +47,13 @@ class Subject(models.Model):
             'view_mode': 'form',
             'view_id': subject_form.id,
         }
+
+    def move_to_bodyweight(self):
+        print("move_to_bodyweight")
+
+    def move_to_food(self):
+        print("move_to_food")
+
+    def move_to_water(self):
+        print("move_to_water")
+

@@ -1,8 +1,5 @@
-import logging
-from typing import Dict, List
-
 from odoo import api, models, fields
-
+from odoo.exceptions import UserError
 
 class Study(models.Model):
     _name = "study.study"
@@ -61,6 +58,17 @@ class Study(models.Model):
             'text': "\'Study Title\' field is updated by {0}".format(self.env.user.name),
         })
 
+    @api.depends("group_ids")
+    def _calculate_animal_count(self):
+        total_animal_count = 0
+        for g in self.group_ids:
+            total_animal_count += (g.male_animal_count + g.female_animal_count)
+            if g.have_subgroup:
+                total_animal_count += (g.subgroup_male_animal_count + g.subgroup_female_animal_count)
+
+        if total_animal_count > self.animal_number_total:
+            print("Total animal count of groups exceeds 'animal_number_total' field")
+
     def action_create(self):
         print("Create Button")
         self.status = "draft"
@@ -86,3 +94,23 @@ class Study(models.Model):
 
     def action_delete(self):
         print("Edit Button")
+
+    def create(self, vals):
+        res = super(Study, self).create(vals)
+        self.check_animal_count()
+        return res
+
+    def write(self, vals):
+        res = super(Study, self).write(vals)
+        self.check_animal_count()
+        return res
+
+    def check_animal_count(self):
+        print('check_animal_count')
+        sum = 0
+        for g in self.group_ids:
+            sum += (g.male_animal_count + g.female_animal_count)
+
+        print('sum is ' + str(sum) + ', total number is ' + str(self.animal_number_total))
+        if sum != self.animal_number_total:
+            raise UserError('Total animal count of Groups doesn\'t match with \'Total Number of Animals\' field.')

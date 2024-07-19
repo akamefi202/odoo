@@ -19,6 +19,7 @@
         'views/tag_views.xml',
         'views/measurement_views.xml',
         'views/unit_views.xml',
+        'data/category_data.xml',
     ],
     "assets": {
         "web.assets_backend": [

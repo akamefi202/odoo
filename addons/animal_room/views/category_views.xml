@@ -8,7 +8,7 @@
             <tree string="Category Tree">
                 <field name="name" />
                 <field name="abbreviation" />
-                <field name="tag_ids" />
+                <field name="tag_ids" widget="many2many_tags" />
             </tree>
         </field>
     </record>
@@ -23,12 +23,8 @@
                     <group col="1">
                         <field name="name" />
                         <field name="abbreviation" />
+                        <field name="tag_ids" widget="many2many_tags" />
                     </group>
-                    <notebook>
-                        <page string="Tags" name="category_tags">
-                            <field name="tag_ids" />
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
         </field>

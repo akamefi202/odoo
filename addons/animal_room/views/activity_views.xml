@@ -9,6 +9,7 @@
                 <field name="name" />
                 <field name="abbreviation" />
                 <field name="category_id" />
+                <field name="tag_ids" widget="many2many_tags" />
             </tree>
         </field>
     </record>
@@ -24,6 +25,7 @@
                         <field name="name" />
                         <field name="abbreviation" />
                         <field name="category_id" />
+                        <field name="tag_ids" widget="many2many_tags" />
                     </group>
                     <notebook>
                         <page string="Measurements" name="activity_measurements">

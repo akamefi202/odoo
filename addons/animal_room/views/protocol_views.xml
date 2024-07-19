@@ -22,33 +22,46 @@
         <field name="arch" type="xml">
             <form string="group">
                 <sheet>
-                    <group col="1">
-                        <field name="study_id" />
-                        <field name="animal_name" />
-                        <field name="animal_number_total" />
-                        <field name="animal_number_per_cage" />
-                        <field name="study_end_date" />
-                        <field name="subjects_allocated" invisible="1" />
+                    <group col="2">
+                        <group>
+                            <field name="study_id" />
+                            <field name="animal_name" />
+                            <field name="animal_number_total" />
+                            <field name="animal_number_per_cage" />
+                            <field name="study_end_date" />
+                            <field name="subjects_allocated" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="grouping_method" />
+                        </group>
+                    </group>
+                    <div class="mb-4">
                         <button
                             name="allocate_subjects"
                             string="Allocate Subjects"
                             type="object"
-                            class="oe_highlight"
+                            class="oe_highlight mx-2 my-1"
                         />
                         <button
                             name="assign_uai"
                             string="Assign UAI"
                             type="object"
-                            class="oe_highlight"
-                            invisible="subjects_allocated == False"
+                            class="oe_highlight mx-2 my-1"
+                            state="subjects_allocated == False"
                         />
-                    </group>
+                        <button
+                            name="grouping_subjects"
+                            string="Grouping Subjects"
+                            type="object"
+                            class="oe_highlight mx-2 my-1"
+                        />
+                    </div>
 
                     <notebook>
                         <page string="Subjects" name="ar_protocol_subjects">
                             <field name="subject_ids" nolabel="1" context="{'default_protocol_id': active_id}">
                                 <tree editable="bottom">
-                                    <field name="id" string="Seq." />
+                                    <field name="segment_id" string="Seq" />
                                     <field name="group_id" />
                                     <field name="animal_name" />
                                     <field name="uai" />

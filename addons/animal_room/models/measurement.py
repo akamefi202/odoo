@@ -11,6 +11,10 @@ class Measurement(models.Model):
             comodel_name='ar.unit',
             string="Unit",
             required=True)
+    tag_ids = fields.Many2many(
+        comodel_name="ar.tag",
+        string="Tags",
+    )
 
     def move_to_measurement(self):
         measurement_form = self.env.ref('animal_room.ar_measurement_form_view', False)

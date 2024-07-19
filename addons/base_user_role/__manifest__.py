@@ -15,6 +15,7 @@
         "security/ir.model.access.csv",
         "data/ir_cron.xml",
         "data/ir_module_category.xml",
+        "data/ir_role_data.xml",
         "views/role.xml",
         "views/user.xml",
         "views/group.xml",

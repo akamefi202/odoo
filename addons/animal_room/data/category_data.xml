@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="category_bodyweight" model="ar.category">
+            <field name="name">Bodyweight</field>
+            <field name="abbreviation">B</field>
+            <field name="tag_ids" eval="[]" />
+        </record>
+        <record id="category_food" model="ar.category">
+            <field name="name">Food</field>
+            <field name="abbreviation">F</field>
+            <field name="tag_ids" eval="[]" />
+        </record>
+        <record id="category_water" model="ar.category">
+            <field name="name">Water</field>
+            <field name="abbreviation">W</field>
+            <field name="tag_ids" eval="[]" />
+        </record>
+        <record id="category_treatment" model="ar.category">
+            <field name="name">Treatment</field>
+            <field name="abbreviation">T</field>
+            <field name="tag_ids" eval="[]" />
+        </record>
+        <record id="category_clinical_observation" model="ar.category">
+            <field name="name">Clinical Observation</field>
+            <field name="abbreviation">CO</field>
+            <field name="tag_ids" eval="[]" />
+        </record>
+        <record id="category_clinical_pathology" model="ar.category">
+            <field name="name">Clinical Pathology</field>
+            <field name="abbreviation">CP</field>
+            <field name="tag_ids" eval="[]" />
+        </record>
+    </data>
+</odoo>
