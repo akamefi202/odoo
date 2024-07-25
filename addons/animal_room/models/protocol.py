@@ -123,14 +123,14 @@ class Protocol(models.Model):
         group_ids = self.study_id.group_ids
         group_count = len(group_ids)
 
-        # get bodyweight array in ascending order
+        # get bodyweight array in descending order
         for i, s in enumerate(subject_ids):
             bodyweight_array.append(s.bodyweight_value)
             subject_index_array.append(i)
 
         for i in range(subject_count - 1):
             for j in range(i + 1, subject_count):
-                if bodyweight_array[i] > bodyweight_array[j]:
+                if bodyweight_array[i] < bodyweight_array[j]:
                     bodyweight_array[i], bodyweight_array[j] = bodyweight_array[j], bodyweight_array[i]
                     subject_index_array[i], subject_index_array[j] = subject_index_array[j], subject_index_array[i]
 
