@@ -6,7 +6,7 @@ class GroupSelectionDialog(models.Model):
     _description = 'cp_group_selection_dialog'
 
     study_group_ids = fields.Many2many(comodel_name='study.group', required=True)
-    sample_order_id = fields.Many2one(comodel_name='cp.sample_order', required=True)
+    sample_order_id = fields.Many2one(comodel_name='cp.sample_order', required=True, ondelete="cascade")
     animal_id = fields.Many2one(comodel_name='study.animal', required=True)
 
     def select_group(self):

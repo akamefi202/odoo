@@ -16,7 +16,8 @@ class Sample(models.Model):
     sample_order_id = fields.Many2one(
         comodel_name="cp.sample_order",
         string="Sample Order",
-        required=True
+        required=True,
+        ondelete="cascade"
     )
 
     animal_name = fields.Char(string="Animal Name")
