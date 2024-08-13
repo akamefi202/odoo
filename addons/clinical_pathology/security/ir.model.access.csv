@@ -1,0 +1,4 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_cp_sample,access_cp_sample,model_cp_sample,base.group_user,1,1,1,1
+access_cp_sample_order,access_cp_sample_order,model_cp_sample_order,base.group_user,1,1,1,1
+access_cp_group_selection_dialog,access_cp_group_selection_dialog,model_cp_group_selection_dialog,base.group_user,1,1,1,1

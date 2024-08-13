@@ -79,6 +79,17 @@ class Protocol(models.Model):
         #if self.subjects_allocated is False or len(self.subject_ids) == 0:
         #    raise UserError("Subjects are not allocated yet.")
 
+        # get animal count to be grouped
+        animal_number_grouped = 0
+        group_ids = self.study_id.group_ids
+        for g in group_ids:
+            animal_number_grouped += (g.male_animal_count + g.female_animal_count)
+            if g.have_subgroup:
+                animal_number_grouped += (g.subgroup_male_animal_count + g.subgroup_female_animal_count)
+
+        if self.animal_number_total != animal_number_grouped:
+            raise UserError('Total animal count of Groups doesn\'t match with \'total number of Subjects\'.')
+
         if self.grouping_method == 'random':
             # Random grouping
             self.random_grouping_subjects()
@@ -104,7 +115,11 @@ class Protocol(models.Model):
         group_ids = self.study_id.group_ids
         group_index = 0
         for g in group_ids:
-            for i in range(g.male_animal_count + g.female_animal_count):
+            group_animal_count = g.male_animal_count + g.female_animal_count
+            if g.have_subgroup:
+                group_animal_count += (g.subgroup_male_animal_count + g.subgroup_female_animal_count)
+
+            for i in range(group_animal_count):
                 group_index_array.append(group_index)
             group_index += 1
 
@@ -117,7 +132,6 @@ class Protocol(models.Model):
         print('average_grouping_subjects')
         bodyweight_array = []
         subject_index_array = []
-        group_index_array = []
         subject_ids = self.subject_ids
         subject_count = len(subject_ids)
         group_ids = self.study_id.group_ids
@@ -125,7 +139,14 @@ class Protocol(models.Model):
 
         # get bodyweight array in descending order
         for i, s in enumerate(subject_ids):
-            bodyweight_array.append(s.bodyweight_value)
+            # get bodyweight of subject
+            bodyweight_value = 0
+            for r in reversed(s.record_ids):
+                if r.category_name == 'Bodyweight':
+                    bodyweight_value = r.value
+                    break
+
+            bodyweight_array.append(bodyweight_value)
             subject_index_array.append(i)
 
         for i in range(subject_count - 1):
@@ -138,10 +159,16 @@ class Protocol(models.Model):
         group_average_array = []
         group_count_array = []
         group_cur_count_array = []
+        group_index_array = [0] * subject_count
         for g in group_ids:
             group_average_array.append(0)
             group_cur_count_array.append(0)
-            group_count_array.append(g.male_animal_count + g.female_animal_count)
+
+            group_animal_count = g.male_animal_count + g.female_animal_count
+            if g.have_subgroup:
+                group_animal_count += (g.subgroup_male_animal_count + g.subgroup_female_animal_count)
+            group_count_array.append(group_animal_count)
+
         for i in range(subject_count):
             group_index = 0
             # get index of group with minimum average value and still have a gap
@@ -153,12 +180,11 @@ class Protocol(models.Model):
                         group_cur_count_array[j] < group_count_array[j]):
                     group_index = j
                     continue
-            group_index_array.append(group_index)
+            group_index_array[subject_index_array[i]] = group_index
             group_average_array[group_index] += 0 if group_count_array[group_index] == 0\
                 else bodyweight_array[i] / group_count_array[group_index]
             group_cur_count_array[group_index] += 1
 
-        print(str(group_index_array))
         # allocate group ids to subjects in calculated order
         for i in range(subject_count):
             group_index = group_index_array[i]

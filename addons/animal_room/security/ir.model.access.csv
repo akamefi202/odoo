@@ -8,3 +8,5 @@ access_ar_activity,access_ar_activity,model_ar_activity,base.group_user,1,1,1,1
 access_ar_measurement,access_ar_measurement,model_ar_measurement,base.group_user,1,1,1,1
 access_ar_tag,access_ar_tag,model_ar_tag,base.group_user,1,1,1,1
 access_ar_unit,access_ar_unit,model_ar_unit,base.group_user,1,1,1,1
+access_ar_instrument,access_ar_instrument,model_ar_instrument,base.group_user,1,1,1,1
+access_ar_record,access_ar_record,model_ar_record,base.group_user,1,1,1,1

@@ -40,21 +40,22 @@
                             <field name="uai" />
                             <field name="study_id" />
                             <field name="alive" widget="radio" />
+                            <field name="filter_category_type" invisible="1" />
                         </group>
                     </group>
                     <notebook>
-                        <page string="Bodyweight" name="subject_bodyweight">
-                            <group col="3">
-                                <group>
-                                    <field name="bodyweight_activity_id" string="Activity" />
-                                </group>
-                                <group>
-                                    <field name="bodyweight_value" string="Value" />
-                                </group>
-                                <group>
-                                    <field name="bodyweight_note" string="Note" />
-                                </group>
-                            </group>
+                        <page string="Records" name="subject_records">
+                            <field name="filtered_record_ids" domain="[('category_name', '=', filter_category_type)]">
+                                <tree editable="bottom">
+                                    <field name="activity_id" />
+                                    <field name="value" />
+                                    <field name="write_date" string="Date &amp; Time" />
+                                    <field name="user_id" />
+                                    <control>
+                                        <create name="add_record_control" string="Add a record"/>
+                                    </control>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>

@@ -5,7 +5,7 @@
             <field name="name">Study</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">study.study</field>
-            <field name="view_mode">tree,kanban</field>
+            <field name="view_mode">tree,form,kanban</field>
         </record>
 
         <record id="action_ar_protocol" model="ir.actions.act_window">
@@ -57,6 +57,13 @@
             <field name="view_mode">tree,form,kanban</field>
         </record>
 
+        <record id="action_ar_instrument" model="ir.actions.act_window">
+            <field name="name">Instrument</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ar.instrument</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
         <menuitem id="ar_menu_root" name="Animal Room" action="action_study_study" sequence="30">
             <menuitem id="ar_protocol_menu" name="Protocol" action="action_ar_protocol" sequence="10" />
             <menuitem id="ar_room_menu" name="Room" action="action_ar_room" sequence="20" />
@@ -66,6 +73,7 @@
                 <menuitem id="ar_measurement_menu" name="Measurement" action="action_ar_measurement" sequence="30" />
                 <menuitem id="ar_tag_menu" name="Tag" action="action_ar_tag" sequence="40" />
                 <menuitem id="ar_unit_menu" name="Unit" action="action_ar_unit" sequence="50" />
+                <menuitem id="ar_instrument_menu" name="Instrument" action="action_ar_instrument" sequence="60" />
             </menuitem>
         </menuitem>
     </data>

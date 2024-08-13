@@ -11,11 +11,11 @@ class Activity(models.Model):
         comodel_name='ar.category',
         string="Category",
         required=True)
-    measurement_ids = fields.Many2many(
-        comodel_name="ar.measurement",
-        string="Measurements",
-    )
     tag_ids = fields.Many2many(
         comodel_name="ar.tag",
         string="Tags",
+    )
+    measurement_ids = fields.Many2many(
+        comodel_name="ar.measurement",
+        string="Measurements",
     )

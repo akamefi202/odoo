@@ -110,7 +110,9 @@ class Study(models.Model):
         sum = 0
         for g in self.group_ids:
             sum += (g.male_animal_count + g.female_animal_count)
+            if g.have_subgroup:
+                sum += (g.subgroup_male_animal_count + g.subgroup_female_animal_count)
 
         print('sum is ' + str(sum) + ', total number is ' + str(self.animal_number_total))
-        if sum != self.animal_number_total:
-            raise UserError('Total animal count of Groups doesn\'t match with \'Total Number of Animals\' field.')
+        if sum > self.animal_number_total:
+            raise UserError('Total animal count of Groups exceeds \'Total Number of Animals\' field.')

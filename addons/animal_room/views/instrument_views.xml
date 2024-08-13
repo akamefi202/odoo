@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <!--ar activity tree view-->
-    <record id="ar_activity_tree_view" model="ir.ui.view">
-        <field name="name">ar.activity.tree</field>
-        <field name="model">ar.activity</field>
+    <record id="ar_instrument_tree_view" model="ir.ui.view">
+        <field name="name">ar.instrument.tree</field>
+        <field name="model">ar.instrument</field>
         <field name="arch" type="xml">
-            <tree string="Activity Tree">
+            <tree string="Instrument Tree">
                 <field name="name" />
                 <field name="abbreviation" />
                 <field name="category_id" />
-                <field name="tag_ids" widget="many2many_tags" />
+                <field name="activity_ids" />
             </tree>
         </field>
     </record>
 
     <!--ar activity form view-->
-    <record id="ar_activity_form_view" model="ir.ui.view">
-        <field name="name">ar.activity.form</field>
-        <field name="model">ar.activity</field>
+    <record id="ar_instrument_form_view" model="ir.ui.view">
+        <field name="name">ar.instrument.form</field>
+        <field name="model">ar.instrument</field>
         <field name="arch" type="xml">
-            <form string="Activity Form">
+            <form string="Instrument Form">
                 <sheet>
                     <group col="1">
                         <field name="name" />
                         <field name="abbreviation" />
                         <field name="category_id" />
-                        <field name="tag_ids" widget="many2many_tags" />
-                        <field name="measurement_ids" />
+                        <field name="activity_ids" />
                     </group>
                 </sheet>
             </form>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--cp sample order tree view-->
+    <record id="cp_sample_order_tree_view" model="ir.ui.view">
+        <field name="name">cp.sample_order.tree</field>
+        <field name="model">cp.sample_order</field>
+        <field name="arch" type="xml">
+            <tree string="Sample Order Tree">
+                <field name="study_id" />
+                <field name="instrument_id" />
+                <field name="activity_id" />
+                <field name="sample_type" />
+            </tree>
+        </field>
+    </record>
+
+    <!--cp sample order form view-->
+    <record id="cp_sample_order_form_view" model="ir.ui.view">
+        <field name="name">cp.sample_order.form</field>
+        <field name="model">cp.sample_order</field>
+        <field name="arch" type="xml">
+            <form string="Sample Order Form">
+                <sheet>
+                    <group col="2">
+                        <group>
+                            <field name="study_id" />
+                            <field name="activity_id" />
+                        </group>
+                        <group>
+                            <field name="instrument_id" />
+                            <field name="sample_type" />
+                        </group>
+                    </group>
+                    <div class="mb-4">
+                        <button
+                            name="collect_samples"
+                            string="Collect Samples"
+                            type="object"
+                            class="oe_highlight"
+                        />
+                    </div>
+                    <notebook>
+                        <page string="Samples" name="cp_samples">
+                            <field name="sample_ids" readonly="1">
+                                <tree>
+                                    <field name="id" string="Sample ID" />
+                                    <field name="group_id" string="Group" />
+                                    <field name="animal_id" string="Animal Name" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

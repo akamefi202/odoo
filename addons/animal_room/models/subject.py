@@ -23,9 +23,17 @@ class Subject(models.Model):
     segment_id = fields.Integer(string="Segment Id", default=0)
     alive = fields.Selection(string="Dead or Alive", selection=[('dead', 'Dead'), ('alive', 'Alive')], default="alive")
 
-    bodyweight_activity_id = fields.Many2one(comodel_name='ar.activity', string='Activity')
-    bodyweight_value = fields.Float(string='Value', default=0)
-    bodyweight_note = fields.Char(string='Note')
+    filter_category_type = fields.Char(default="Bodyweight")
+    record_ids = fields.One2many(
+        comodel_name="ar.record",
+        string="Records",
+        inverse_name="subject_id",
+        domain=[('category_name', '=', filter_category_type)]
+    )
+    filtered_record_ids = fields.Many2many(
+        comodel_name="ar.record",
+        string="Filtered Records",
+    )
 
     @api.depends('protocol_id')
     def get_animal_name(self):
@@ -48,12 +56,25 @@ class Subject(models.Model):
             'view_id': subject_form.id,
         }
 
+    def filter_records(self):
+        records = self.env['ar.record'].search([
+            ("subject_id", "=", self.id),
+            ("category_name", "=", self.filter_category_type)]
+        )
+        self.filtered_record_ids = records
+        #self.record_ids.determine_domain("category_name", "=", self.filter_category_type)
+
     def move_to_bodyweight(self):
         print("move_to_bodyweight")
+        self.filter_category_type = "Bodyweight"
+        self.filter_records()
 
     def move_to_food(self):
         print("move_to_food")
+        self.filter_category_type = "Food"
+        self.filter_records()
 
     def move_to_water(self):
         print("move_to_water")
-
+        self.filter_category_type = "Water"
+        self.filter_records()

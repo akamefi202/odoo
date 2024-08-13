@@ -7,3 +7,5 @@ from . import activity
 from . import unit
 from . import measurement
 from . import tag
+from . import instrument
+from . import record

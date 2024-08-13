@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_cp_sample_order" model="ir.actions.act_window">
+            <field name="name">Sample Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cp.sample_order</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <menuitem id="cp_menu_root" name="Clinical Pathology" action="action_cp_sample_order" />
+    </data>
+</odoo>
