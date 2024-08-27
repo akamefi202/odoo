@@ -21,4 +21,4 @@ class Sample(models.Model):
     )
 
     animal_name = fields.Char(string="Animal Name")
-    group_name = fields.Char(string="Group")
+    group_name = fields.Char(string="Group Name")

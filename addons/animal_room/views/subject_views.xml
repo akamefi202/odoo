@@ -40,26 +40,24 @@
                             <field name="uai" />
                             <field name="study_id" />
                             <field name="alive" widget="radio" />
-                            <field name="filter_category_type" invisible="1" />
                         </group>
                     </group>
-                    <notebook>
-                        <page string="Records" name="subject_records">
-                            <field name="filtered_record_ids" domain="[('category_name', '=', filter_category_type)]">
-                                <tree editable="bottom">
-                                    <field name="activity_id" />
-                                    <field name="value" />
-                                    <field name="write_date" string="Date &amp; Time" />
-                                    <field name="user_id" />
-                                    <control>
-                                        <create name="add_record_control" string="Add a record"/>
-                                    </control>
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="view_subject_record_tree" model="ir.ui.view">
+        <field name="name">ar.subject.records.tree</field>
+        <field name="model">ar.record</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" multi_edit="1">
+                <field name="activity_id" required="1" />
+                <field name="value" />
+                <field name="write_date" string="Date &amp; Time" />
+                <field name="user_id" />
+            </tree>
         </field>
     </record>
 </odoo>

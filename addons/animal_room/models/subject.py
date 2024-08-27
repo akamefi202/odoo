@@ -11,7 +11,8 @@ class Subject(models.Model):
         comodel_name='study.study',
         string="Associate Study",
         required=True,
-        readonly=True)
+        readonly=True,
+    )
     animal_name = fields.Char(string="Animal Name", compute="get_animal_name", required=True, readonly=True)
     protocol_id = fields.Many2one(comodel_name="ar.protocol", string="Protocol", required=True)
     group_id = fields.Many2one(
@@ -23,17 +24,29 @@ class Subject(models.Model):
     segment_id = fields.Integer(string="Segment Id", default=0)
     alive = fields.Selection(string="Dead or Alive", selection=[('dead', 'Dead'), ('alive', 'Alive')], default="alive")
 
-    filter_category_type = fields.Char(default="Bodyweight")
+    # bodyweight_record_ids = fields.Many2many(
+    #     comodel_name="ar.record",
+    #     string="Bodyweight Records",
+    #     relation="subject_bodyweight_record_rel",
+    # )
+    # food_record_ids = fields.Many2many(
+    #     comodel_name="ar.record",
+    #     string="=Food Records",
+    #     relation="subject_food_record_rel",
+    # )
+    # water_record_ids = fields.Many2many(
+    #     comodel_name="ar.record",
+    #     string="Water Records",
+    #     relation="subject_water_record_rel",
+    # )
     record_ids = fields.One2many(
         comodel_name="ar.record",
         string="Records",
         inverse_name="subject_id",
-        domain=[('category_name', '=', filter_category_type)]
     )
-    filtered_record_ids = fields.Many2many(
-        comodel_name="ar.record",
-        string="Filtered Records",
-    )
+
+    # selected bool value for subject selection dialog of clinical pathology module
+    selected = fields.Boolean(default=False)
 
     @api.depends('protocol_id')
     def get_animal_name(self):
@@ -56,25 +69,43 @@ class Subject(models.Model):
             'view_id': subject_form.id,
         }
 
-    def filter_records(self):
-        records = self.env['ar.record'].search([
-            ("subject_id", "=", self.id),
-            ("category_name", "=", self.filter_category_type)]
-        )
-        self.filtered_record_ids = records
-        #self.record_ids.determine_domain("category_name", "=", self.filter_category_type)
-
     def move_to_bodyweight(self):
         print("move_to_bodyweight")
-        self.filter_category_type = "Bodyweight"
-        self.filter_records()
+        view_id = self.env.ref('animal_room.view_subject_record_tree').id
+        return {
+            'name': 'Bodyweight Records',
+            'view_mode': 'tree',
+            'type': 'ir.actions.act_window',
+            'res_model': 'ar.record',
+            'views': [(view_id, 'tree')],
+            'domain': [('category_name', '=', 'Bodyweight')],
+            'context': {'default_subject_id': self.id},
+        }
 
     def move_to_food(self):
         print("move_to_food")
-        self.filter_category_type = "Food"
-        self.filter_records()
+        view_id = self.env.ref('animal_room.view_subject_record_tree').id
+        return {
+            'name': 'Food Records',
+            'view_mode': 'tree',
+            'type': 'ir.actions.act_window',
+            'res_model': 'ar.record',
+            'res_id': self.id,
+            'views': [(view_id, 'tree')],
+            'domain': [('id', 'in', self.record_ids.ids), ('category_name', '=', 'Food')],
+            'context': {'default_subject_id': self.id},
+        }
 
     def move_to_water(self):
         print("move_to_water")
-        self.filter_category_type = "Water"
-        self.filter_records()
+        view_id = self.env.ref('animal_room.view_subject_record_tree').id
+        return {
+            'name': 'Water Records',
+            'view_mode': 'tree',
+            'type': 'ir.actions.act_window',
+            'res_model': 'ar.record',
+            'views': [(view_id, 'tree')],
+            #'domain': [('id', 'in', self.water_record_ids.ids)],
+            'domain': [('id', 'in', self.record_ids.ids), ('category_name', '=', 'Water')],
+            'context': {'default_subject_id': self.id},
+        }

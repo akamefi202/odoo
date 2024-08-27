@@ -9,7 +9,7 @@
         'security/ir.model.access.csv',
         'views/cp_views.xml',
         'views/sample_order_views.xml',
-        'views/group_selection_dialog.xml',
+        'views/subject_selection_dialog.xml',
     ],
     "license": "LGPL-3",
 }

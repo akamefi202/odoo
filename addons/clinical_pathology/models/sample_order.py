@@ -6,9 +6,9 @@ class SampleOrder(models.Model):
     _name = 'cp.sample_order'
     _description = 'cp_sample_order'
 
-    study_id = fields.Many2one(
-        comodel_name='study.study',
-        string="Associate Study",
+    protocol_id = fields.Many2one(
+        comodel_name='ar.protocol',
+        string="Associate Protocol",
         required=True
     )
     activity_id = fields.Many2one(
@@ -37,21 +37,32 @@ class SampleOrder(models.Model):
 
         if len(self.sample_ids) != 0:
             raise UserError("Samples are collected already. Please delete all collected samples first.")
-        if self.study_id is None:
-            raise UserError("Please select a study first.")
-        if len(self.study_id.group_ids) == 0:
-            raise UserError("The study has no groups. Please create groups first.")
+        if self.protocol_id is None:
+            raise UserError("Please select a protocol first.")
+        if len(self.protocol_id.subject_ids) == 0:
+            raise UserError("The protocol has no subjects. Please allocate subjects first.")
 
-        dialog = self.env['cp.group_selection_dialog'].create({
-            'study_group_ids': self.study_id.group_ids,
+        # dialog = self.env['cp.subject_selection_dialog'].create({
+        #     'sample_subject_ids': self.protocol_id.subject_ids,
+        #     'sample_order_id': self.id,
+        #     'animal_id': self.protocol_id.study_id.animal_id.id,
+        # })
+        dialog = self.env['cp.subject_selection_dialog'].create({
+            'subject_ids': self.protocol_id.subject_ids,
             'sample_order_id': self.id,
-            'animal_id': self.study_id.animal_id.id,
+            'animal_id': self.protocol_id.study_id.animal_id.id,
         })
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Group Selection Dialog',
-            'res_model': 'cp.group_selection_dialog',
+            'name': 'Subject Selection Dialog',
+            'res_model': 'cp.subject_selection_dialog',
             'view_mode': 'form',
             'target': 'new',
             'res_id': dialog.id
         }
+
+    def delete_samples(self):
+        print("collect_samples")
+
+        for s in self.sample_ids:
+            s.unlink()

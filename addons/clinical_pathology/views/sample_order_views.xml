@@ -6,7 +6,7 @@
         <field name="model">cp.sample_order</field>
         <field name="arch" type="xml">
             <tree string="Sample Order Tree">
-                <field name="study_id" />
+                <field name="protocol_id" />
                 <field name="instrument_id" />
                 <field name="activity_id" />
                 <field name="sample_type" />
@@ -23,7 +23,7 @@
                 <sheet>
                     <group col="2">
                         <group>
-                            <field name="study_id" />
+                            <field name="protocol_id" />
                             <field name="activity_id" />
                         </group>
                         <group>
@@ -36,7 +36,14 @@
                             name="collect_samples"
                             string="Collect Samples"
                             type="object"
-                            class="oe_highlight"
+                            class="oe_highlight mx-2 my-1"
+                        />
+                        <button
+                            name="delete_samples"
+                            string="Delete Samples"
+                            type="object"
+                            class="oe_highlight mx-2 my-1"
+                            confirm="Are you sure to delete all samples?"
                         />
                     </div>
                     <notebook>
