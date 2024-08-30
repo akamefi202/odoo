@@ -12,7 +12,7 @@ class SubjectSelectionDialog(models.Model):
 
     def select_subject(self):
         print("select_group")
-        #for s in self.sample_subject_ids:
+        print(self.subject_ids[0].display_name)
         for s in self.subject_ids:
             self.env['cp.sample'].create({
                 'sample_order_id': self.sample_order_id.id,

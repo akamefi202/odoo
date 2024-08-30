@@ -5,7 +5,7 @@ class Subject(models.Model):
     _name = 'ar.subject'
     _description = 'ar_subject'
 
-    uai = fields.Char(string="Unique Animal ID", readonly=True)
+    uai = fields.Char(string="Unique Animal ID", readonly=True, default="N/A")
     sex = fields.Char(string="Sex", required=True, readonly=True)
     study_id = fields.Many2one(
         comodel_name='study.study',
@@ -48,6 +48,8 @@ class Subject(models.Model):
     # selected bool value for subject selection dialog of clinical pathology module
     selected = fields.Boolean(default=False)
 
+    _rec_name = 'display_name'
+
     @api.depends('protocol_id')
     def get_animal_name(self):
         if self.protocol_id:
@@ -57,6 +59,12 @@ class Subject(models.Model):
     def get_study_id(self):
         if self.protocol_id:
            self.study_id = self.protocol_id.study_id
+
+    def _compute_display_name(self):
+        for subject in self:
+            subject.display_name = ("UAI: {} | Sex: {} | Animal Type: {} | Alive: {} | Protocol: {} | Group: {}").format(
+                subject.uai, subject.sex, subject.animal_name, subject.alive == "alive",
+                subject.study_id.name, subject.group_id.name)
 
     def move_to_subject(self):
         subject_form = self.env.ref('animal_room.ar_subject_form_view', False)
