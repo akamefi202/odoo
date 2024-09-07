@@ -23,7 +23,7 @@ class Record(models.Model):
     subject_id = fields.Many2one(
         comodel_name='ar.subject',
         string="Subject",
-        required="True",
+        required=True,
         ondelete="cascade"
     )
     category_name = fields.Char(

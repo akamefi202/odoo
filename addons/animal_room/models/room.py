@@ -6,7 +6,7 @@ class Room(models.Model):
     _description = 'ar_room'
 
     name = fields.Char(required=True, string="Name")
-    code = fields.Char(required=True, string="ID")
+    code = fields.Char(required=True, string="Code")
     location = fields.Char(required=True, string="Location")
     pic_id = fields.Many2one(
         comodel_name='res.users',

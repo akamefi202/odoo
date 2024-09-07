@@ -24,7 +24,7 @@
     ],
     "assets": {
         "web.assets_backend": [
-            'animal_room/static/src/scss/styles.scss',
+            '/animal_room/static/src/css/style.css',
         ],
     },
     "license": "LGPL-3",

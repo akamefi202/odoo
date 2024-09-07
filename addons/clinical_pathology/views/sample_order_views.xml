@@ -20,6 +20,7 @@
         <field name="model">cp.sample_order</field>
         <field name="arch" type="xml">
             <form string="Sample Order Form">
+                <link rel="stylesheet" type="text/css" href="/clinical_pathology/static/src/css/style.css" />
                 <sheet>
                     <group col="2">
                         <group>
@@ -33,6 +34,12 @@
                     </group>
                     <div class="mb-4">
                         <button
+                            name="get_sample_subjects"
+                            string="Get Subjects"
+                            type="object"
+                            class="oe_highlight mx-2 my-1"
+                        />
+                        <button
                             name="collect_samples"
                             string="Collect Samples"
                             type="object"
@@ -44,15 +51,40 @@
                             type="object"
                             class="oe_highlight mx-2 my-1"
                             confirm="Are you sure to delete all samples?"
+                            invisible="True"
                         />
                     </div>
+                    <div class="mb-4">
+                        Please choose a protocol first, then click "Get Subjects" button to get subject list from the protocol.<br />
+                        Next, select subjects to collect samples and click "Collect Samples" button.
+                    </div>
+
                     <notebook>
+                        <page string="Subjects" name="cp_sample_subjects">
+                            <field name="sample_subject_ids">
+                                <tree class="cp_sample_subject_tree" editable="bottom">
+                                    <field name="selected" />
+                                    <field name="uai" string="ID" />
+                                    <field name="sex" string="Sex" />
+                                    <field name="group_name" string="Group" />
+                                    <field name="mortality" string="Mortality" />
+
+                                    <control>
+                                        <create name="add_sample_subjects" string="Add subjects" />
+                                    </control>
+                                </tree>
+                            </field>
+                        </page>
                         <page string="Samples" name="cp_samples">
-                            <field name="sample_ids" readonly="1">
-                                <tree>
+                            <field name="sample_ids">
+                                <tree class="cp_sample_tree">
                                     <field name="id" string="Sample ID" />
-                                    <field name="group_id" string="Group" />
-                                    <field name="animal_id" string="Animal Name" />
+                                    <field name="group_name" />
+                                    <field name="animal_name"/>
+
+                                    <control>
+                                        <create name="add_sample" string="Add a sample" />
+                                    </control>
                                 </tree>
                             </field>
                         </page>

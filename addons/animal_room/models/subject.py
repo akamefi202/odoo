@@ -14,7 +14,7 @@ class Subject(models.Model):
         readonly=True,
     )
     animal_name = fields.Char(string="Animal Name", compute="get_animal_name", required=True, readonly=True)
-    protocol_id = fields.Many2one(comodel_name="ar.protocol", string="Protocol", required=True)
+    protocol_id = fields.Many2one(comodel_name="ar.protocol", string="Protocol", required=True, ondelete="cascade")
     group_id = fields.Many2one(
         comodel_name='study.group',
         string="Group")
@@ -45,11 +45,6 @@ class Subject(models.Model):
         inverse_name="subject_id",
     )
 
-    # selected bool value for subject selection dialog of clinical pathology module
-    selected = fields.Boolean(default=False)
-
-    _rec_name = 'display_name'
-
     @api.depends('protocol_id')
     def get_animal_name(self):
         if self.protocol_id:
@@ -59,12 +54,6 @@ class Subject(models.Model):
     def get_study_id(self):
         if self.protocol_id:
            self.study_id = self.protocol_id.study_id
-
-    def _compute_display_name(self):
-        for subject in self:
-            subject.display_name = ("UAI: {} | Sex: {} | Animal Type: {} | Alive: {} | Protocol: {} | Group: {}").format(
-                subject.uai, subject.sex, subject.animal_name, subject.alive == "alive",
-                subject.study_id.name, subject.group_id.name)
 
     def move_to_subject(self):
         subject_form = self.env.ref('animal_room.ar_subject_form_view', False)
@@ -77,43 +66,26 @@ class Subject(models.Model):
             'view_id': subject_form.id,
         }
 
-    def move_to_bodyweight(self):
-        print("move_to_bodyweight")
+    def move_to_records(self, tree_name, category_name):
         view_id = self.env.ref('animal_room.view_subject_record_tree').id
         return {
-            'name': 'Bodyweight Records',
+            'name': tree_name,
             'view_mode': 'tree',
             'type': 'ir.actions.act_window',
             'res_model': 'ar.record',
             'views': [(view_id, 'tree')],
-            'domain': [('category_name', '=', 'Bodyweight')],
+            'domain': [('category_name', '=', category_name)],
             'context': {'default_subject_id': self.id},
         }
+
+    def move_to_bodyweight(self):
+        print("move_to_bodyweight")
+        return self.move_to_records('Bodyweight Records', 'Bodyweight')
 
     def move_to_food(self):
         print("move_to_food")
-        view_id = self.env.ref('animal_room.view_subject_record_tree').id
-        return {
-            'name': 'Food Records',
-            'view_mode': 'tree',
-            'type': 'ir.actions.act_window',
-            'res_model': 'ar.record',
-            'res_id': self.id,
-            'views': [(view_id, 'tree')],
-            'domain': [('id', 'in', self.record_ids.ids), ('category_name', '=', 'Food')],
-            'context': {'default_subject_id': self.id},
-        }
+        return self.move_to_records('Food Records', 'Food')
 
     def move_to_water(self):
         print("move_to_water")
-        view_id = self.env.ref('animal_room.view_subject_record_tree').id
-        return {
-            'name': 'Water Records',
-            'view_mode': 'tree',
-            'type': 'ir.actions.act_window',
-            'res_model': 'ar.record',
-            'views': [(view_id, 'tree')],
-            #'domain': [('id', 'in', self.water_record_ids.ids)],
-            'domain': [('id', 'in', self.record_ids.ids), ('category_name', '=', 'Water')],
-            'context': {'default_subject_id': self.id},
-        }
+        return self.move_to_records('Water Records', 'Water')

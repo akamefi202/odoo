@@ -53,10 +53,15 @@
         <field name="priority">1000</field>
         <field name="arch" type="xml">
             <tree editable="bottom" multi_edit="1">
+                <header>
+<!--                    <div>Unique Animal ID:</div>-->
+<!--                    <div>Associated Study:</div>-->
+                </header>
+
                 <field name="activity_id" required="1" />
                 <field name="value" />
                 <field name="write_date" string="Date &amp; Time" />
-                <field name="user_id" />
+                <field name="user_id" widget="many2one_avatar_user" />
             </tree>
         </field>
     </record>

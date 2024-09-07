@@ -31,9 +31,12 @@ class Protocol(models.Model):
         string="Grouping Method",
         selection=[('random', 'Random Grouping'), ('average', 'Auto Grouping based on Average Weight')],
         default="random",
-        compute="",
         required=True,
     )
+
+    def _compute_display_name(self):
+        for protocol in self:
+            protocol.display_name = protocol.study_id.name
 
     @api.onchange('study_id')
     def get_study_data(self):
