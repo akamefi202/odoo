@@ -14,6 +14,7 @@ class Subject(models.Model):
         readonly=True,
     )
     animal_name = fields.Char(string="Animal Name", compute="get_animal_name", required=True, readonly=True)
+    animal_number = fields.Char(string="Animal Number", readonly=True)
     protocol_id = fields.Many2one(comodel_name="ar.protocol", string="Protocol", required=True, ondelete="cascade")
     group_id = fields.Many2one(
         comodel_name='study.group',

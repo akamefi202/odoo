@@ -100,6 +100,8 @@ class Protocol(models.Model):
             # Auto grouping based on average weight
             self.average_grouping_subjects()
 
+        self.set_animal_numbers()
+
     def random_grouping_subjects(self):
         print('random_grouping_subjects')
         number_array = []
@@ -192,3 +194,14 @@ class Protocol(models.Model):
         for i in range(subject_count):
             group_index = group_index_array[i]
             self.subject_ids[i].group_id = group_ids[group_index]
+
+    def set_animal_numbers(self):
+        group_index = 1
+        for g in self.study_id.group_ids:
+            subject_index = 1
+            for i in range(len(self.subject_ids)):
+                if self.subject_ids[i].group_id.id == g.id:
+                    self.subject_ids[i].animal_number = "%d" % group_index + "%03d" % subject_index
+                    subject_index += 1
+
+            group_index += 1

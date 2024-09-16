@@ -63,7 +63,7 @@
                                 <tree editable="bottom">
                                     <field name="segment_id" string="Seq" />
                                     <field name="group_id" />
-                                    <field name="animal_name" />
+                                    <field name="animal_number" string="Animal Name" />
                                     <field name="uai" />
                                     <field name="sex" />
                                     <field name="cage_id" />
