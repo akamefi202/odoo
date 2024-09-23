@@ -56,6 +56,7 @@ class SampleOrder(models.Model):
                     'uai': s.uai,
                     'sex': s.sex,
                     'animal_name': s.animal_name,
+                    'animal_number': s.animal_number,
                     'group_name': s.group_id.name,
                     'mortality': 'Alive' if s.alive == 'alive' else 'Dead',
                     'sample_order_id': self._origin.id,
@@ -79,6 +80,7 @@ class SampleOrder(models.Model):
                 self.env['cp.sample'].create({
                     'sample_order_id': self._origin.id,
                     'animal_name': s.animal_name,
+                    'animal_number': s.animal_number,
                     'group_name': s.group_name,
                 })
 

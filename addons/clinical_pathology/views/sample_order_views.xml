@@ -80,7 +80,7 @@
                                 <tree class="cp_sample_tree">
                                     <field name="id" string="Sample ID" />
                                     <field name="group_name" />
-                                    <field name="animal_name"/>
+                                    <field name="animal_number" string="Animal Name"/>
 
                                     <control>
                                         <create name="add_sample" string="Add a sample" />

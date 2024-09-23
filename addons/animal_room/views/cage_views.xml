@@ -15,7 +15,7 @@
                             <field name="subject_ids" readonly="True">
                                 <tree>
                                     <field name="uai" />
-                                    <field name="animal_name" />
+                                    <field name="animal_number" string="Animal Name" />
                                     <field name="sex" />
                                     <field name="study_id" />
                                     <field name="alive" />

@@ -20,5 +20,6 @@ class Sample(models.Model):
         ondelete="cascade"
     )
 
+    animal_number = fields.Char(string="Animal Number")
     animal_name = fields.Char(string="Animal Name")
     group_name = fields.Char(string="Group Name")

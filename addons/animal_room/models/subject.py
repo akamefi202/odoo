@@ -75,7 +75,7 @@ class Subject(models.Model):
             'type': 'ir.actions.act_window',
             'res_model': 'ar.record',
             'views': [(view_id, 'tree')],
-            'domain': [('category_name', '=', category_name)],
+            'domain': [('category_name', '=', category_name), ('subject_id', '=', self.id)],
             'context': {'default_subject_id': self.id},
         }
 
